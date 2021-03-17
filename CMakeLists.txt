@@ -211,5 +211,6 @@ include_directories(
 catkin_install_python(PROGRAMS
   src/com_ros.py
   src/talker.py
+  src/gripping.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
