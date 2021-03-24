@@ -204,13 +204,13 @@ include_directories(
 # catkin_add_nosetests(test)
 
 
-#add_executable(p26_com src/com_ros.cpp)
+#add_executable(p26_actuate src/actuating.cpp)
 
-#target_link_libraries (p26_com ${catkin_LIBRARIES})
+#target_link_libraries (p26_actuate ${catkin_LIBRARIES})
 
 catkin_install_python(PROGRAMS
   src/com_ros.py
-  src/talker.py
+  src/actuation.py
   src/gripping.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
