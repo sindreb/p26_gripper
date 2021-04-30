@@ -1,28 +1,19 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.7
 
-import sys
-import copy
-import rospy
-import geometry_msgs.msg
-from std_msgs.msg import String, Int64, Float32
+import pigpio
 
-cylinder_com = geometry_msgs.msg.Point()
-
-def callback_com(data):
-    global cylinder_com
-    cylinder_com = data
-    rospy.loginfo("Received cylinder center of mass: %f , %f , %f", cylinder_com.x, cylinder_com.y, cylinder_com.z)
-
-def main():
-
-        rospy.init_node('raspberry_com', anonymous=True)
-
-        rospy.Subscriber("p26_lefty/cylinder_com", geometry_msgs.msg.Point, callback_com)
-        str = "Waiting for cylinder com..."
-        rospy.loginfo(str)
-
-        rospy.wait_for_message("p26_lefty/cylinder_com", geometry_msgs.msg.Point, timeout=None)
-        rate = rospy.Rate(10)
+pi = pigpio.pi()
 
 
-main()
+pi.set_mode(22, pigpio.OUTPUT)
+
+pi.set_PWM_frequency(22, 1000)
+pi.set_PWM_dutycycle(22, 0)
+
+pi.write(17, 0)
+pi.write(27, 1)
+
+
+
+while True:
+   print(pi.get_PWM_frequency(15))
